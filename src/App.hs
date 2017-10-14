@@ -1,9 +1,11 @@
-{-# LANGUAGE OverloadedStrings, QuasiQuotes #-}
-module Example (runApp, app) where
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE QuasiQuotes       #-}
 
-import           Data.Aeson (Value(..), object, (.=))
+module App (runApp) where
+
+import           Data.Aeson  (Value (..), object, (.=))
 import           Network.Wai (Application)
-import qualified Web.Scotty as S
+import qualified Web.Scotty  as S
 
 app' :: S.ScottyM ()
 app' = do
@@ -12,9 +14,6 @@ app' = do
 
   S.get "/some-json" $ do
     S.json $ object ["foo" .= Number 23, "bar" .= Number 42]
-
-app :: IO Application
-app = S.scottyApp app'
 
 runApp :: IO ()
 runApp = S.scotty 8080 app'
