@@ -3,17 +3,18 @@
 
 module App (runApp) where
 
-import           Data.Aeson  (Value (..), object, (.=))
-import           Network.Wai (Application)
-import qualified Web.Scotty  as S
+import           Data.Aeson       (Value (..), object, (.=))
+import           Network.Wai      (Application)
+import           Web.Scotty       (ScottyM, scotty)
+import           Web.Scotty.Trans (get, json, text)
 
-app' :: S.ScottyM ()
+app' :: ScottyM ()
 app' = do
-  S.get "/" $ do
-    S.text "hello"
+  get "/" $ do
+    text "hello"
 
-  S.get "/some-json" $ do
-    S.json $ object ["foo" .= Number 23, "bar" .= Number 42]
+  get "/some-json" $ do
+    json $ object ["foo" .= Number 23, "bar" .= Number 42]
 
 runApp :: IO ()
-runApp = S.scotty 8080 app'
+runApp = scotty 8080 app'
