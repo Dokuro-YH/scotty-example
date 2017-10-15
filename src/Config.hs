@@ -1,4 +1,4 @@
-module Config (getConfig, getOptions) where
+module Config (getConfig, getOptions, setEnv) where
 
 import           Types
 
@@ -34,6 +34,11 @@ getConfig = do
   return $ Config { env = env
                   , pool = pool
                   }
+
+setEnv :: Env -> Config -> IO Config
+setEnv e c = return Config { env = e
+                           , pool = pool c
+                           }
 
 getPool :: Env -> IO ConnectionPool
 getPool _ = do

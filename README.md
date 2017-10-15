@@ -35,5 +35,5 @@ $ export MYSQL_HOST=foo.example.com
 在编译好之后运行下面的命令启动该项目
 
 ```
-$ stack exec scotty-example
+$ stack exec app
 ```

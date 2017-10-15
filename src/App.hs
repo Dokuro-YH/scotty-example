@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes       #-}
 
-module App (runApp) where
+module App (app, runApp) where
 
 import           Config
 import           Types
