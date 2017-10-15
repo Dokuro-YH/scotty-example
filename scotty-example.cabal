@@ -2,12 +2,12 @@ name:                scotty-example
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/githubuser/scotty-example#readme
+homepage:            https://github.com/Dokuro-YH/scotty-example#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Author name here
-maintainer:          example@example.com
-copyright:           2017 Author name here
+maintainer:          shimmly@live.cn
+copyright:           2017 Author Dokuro-YH
 category:            Web
 build-type:          Simple
 extra-source-files:  README.md
@@ -15,12 +15,22 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     App
+  exposed-modules:     Types
+                     , Config
+                     , App
   build-depends:       base >= 4.7 && < 5
                      , aeson
+                     , mtl
+                     , transformers
+                     , data-default
+                     , text
+                     , resource-pool
+                     , mysql-simple
+                     , http-types
                      , scotty
                      , wai
-                     , wai-extra >= 3.0
+                     , wai-extra
+                     , warp
   default-language:    Haskell2010
 
 executable scotty-example-exe
