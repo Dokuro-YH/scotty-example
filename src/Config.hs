@@ -46,15 +46,17 @@ getPool _ = do
   d <- lookupEnv "MYSQL_DATABASE"
   u <- lookupEnv "MYSQL_USER"
   p <- lookupEnv "MYSQL_PASSWORD"
-  dbConf' <- return $ DbConfig <$> h <*> d <*> u <*> p
-  c <- return $ fromMaybe dbConf dbConf'
+  let dbConf' = DbConfig <$> h <*> d <*> u <*> p
+      c = fromMaybe dbConf dbConf'
   createPool (newConn c) close 1 64 10
   where
-    dbConf = DbConfig { dbHost = "localhost"
-                      , dbDatabase = "test"
-                      , dbUser = "root"
-                      , dbPassword = "root"
-                      }
+    dbConf =
+      DbConfig
+      { dbHost = "localhost"
+      , dbDatabase = "test"
+      , dbUser = "root"
+      , dbPassword = "root"
+      }
 
 newConn :: DbConfig -> IO Connection
 newConn conf = connect defaultConnectInfo { connectHost = dbHost conf

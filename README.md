@@ -1,10 +1,12 @@
 # scotty-example
 
+这是一个 scotty + wai 搭建的一个简单的 RESTFul 风格 API 的 TodoList Web项目
+
 ## Quick Start
 
 ### Build
 
-该项目使用 stack 工具打包编译，确保已安装 stack 之后再控制台运行如下命令
+该项目使用 stack 工具打包编译，确保已安装 stack 之后在项目根目录运行
 
 ```
 $ stack build

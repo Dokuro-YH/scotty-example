@@ -5,7 +5,7 @@ version:             0.1.0.0
 homepage:            https://github.com/Dokuro-YH/scotty-example#readme
 license:             BSD3
 license-file:        LICENSE
-author:              Author name here
+author:              Yanhai
 maintainer:          shimmly@live.cn
 copyright:           2017 Author Dokuro-YH
 category:            Web
@@ -17,6 +17,7 @@ library
   hs-source-dirs:      src
   exposed-modules:     Types
                      , Config
+                     , Db
                      , App
   build-depends:       base >= 4.7 && < 5
                      , aeson
@@ -49,6 +50,8 @@ test-suite test
                      , scotty-example
                      , aeson
                      , hspec
+                     , resource-pool
+                     , mysql-simple
                      , mtl
                      , scotty
                      , wai
