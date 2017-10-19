@@ -84,6 +84,7 @@ main = do
                   { simpleRequest =
                       defaultRequest {requestMethod = "DELETE"} `setPath`
                       "/todos/1"
+                  , simpleRequestBody = ""
                   }
           r <- runSession req a
           simpleStatus r `shouldBe` ok200
