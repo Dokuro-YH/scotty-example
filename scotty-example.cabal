@@ -1,13 +1,13 @@
 name:                scotty-example
-version:             0.1.0.0
+version:             1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/githubuser/scotty-example#readme
+homepage:            https://github.com/Dokuro-YH/scotty-example#readme
 license:             BSD3
 license-file:        LICENSE
-author:              Author name here
-maintainer:          example@example.com
-copyright:           2017 Author name here
+author:              Yanhai
+maintainer:          shimmly@live.cn
+copyright:           2017 Author Dokuro-YH
 category:            Web
 build-type:          Simple
 extra-source-files:  README.md
@@ -15,14 +15,26 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Example
+  exposed-modules:     Types
+                     , Config
+                     , Db
+                     , App
   build-depends:       base >= 4.7 && < 5
                      , aeson
+                     , mtl
+                     , transformers
+                     , data-default
+                     , text
+                     , resource-pool
+                     , mysql-simple
+                     , http-types
                      , scotty
                      , wai
+                     , wai-extra
+                     , warp
   default-language:    Haskell2010
 
-executable scotty-example-exe
+executable app
   hs-source-dirs:      app
   main-is:             Main.hs
   ghc-options:         -threaded -O2 -rtsopts -with-rtsopts=-N
@@ -30,20 +42,24 @@ executable scotty-example-exe
                      , scotty-example
   default-language:    Haskell2010
 
-test-suite scotty-example-test
+test-suite test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
-  main-is:             Spec.hs
+  main-is:             Main.hs
   build-depends:       base
                      , scotty-example
-                     , hspec
-                     , hspec-wai
-                     , hspec-wai-json
-                     , http-types
                      , aeson
+                     , hspec
+                     , resource-pool
+                     , mysql-simple
+                     , mtl
+                     , scotty
+                     , wai
+                     , wai-extra
+                     , http-types
   ghc-options:         -threaded -O2 -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010
 
 source-repository head
   type:     git
-  location: https://github.com/githubuser/scotty-example
+  location: https://github.com/Dokuro-YH/scotty-example
