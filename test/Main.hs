@@ -41,14 +41,16 @@ main = do
           r <- runSession (request (defaultRequest `setPath` "/notFound")) a
           simpleStatus r `shouldBe` notFound404
           simpleBody r `shouldBe` "<h1>404 - Not Found</h1>"
-      describe "Todo Actions" $ do
-        it "listTodos" $ do
+      describe "GET /todos" $ do
+        it "200" $ do
           r <- runSession (request (defaultRequest `setPath` "/todos")) a
           simpleStatus r `shouldBe` ok200
-        it "getTodo" $ do
+      describe "GET /todos/1" $ do
+        it "200" $ do
           r <- runSession (request (defaultRequest `setPath` "/todos/1")) a
           simpleStatus r `shouldBe` ok200
-        it "createTodo" $ do
+      describe "POST /todos" $ do
+        it "201" $ do
           let req =
                 srequest
                   SRequest
@@ -59,7 +61,8 @@ main = do
                   }
           r <- runSession req a
           simpleStatus r `shouldBe` created201
-        it "updateTodo" $ do
+      describe "PUT /todos/1" $ do
+        it "200" $ do
           let req =
                 srequest
                   SRequest
@@ -73,7 +76,8 @@ main = do
           simpleStatus r `shouldBe` ok200
           simpleBody r `shouldBe`
             "{\"status\":\"Complete\",\"name\":\"new-test-1\",\"id\":1}"
-        it "deleteTodo" $ do
+      describe "DELETE /todos/1" $ do
+        it "200" $ do
           let req =
                 srequest
                   SRequest
@@ -89,4 +93,4 @@ resetDb c = do
   execute_ c "drop table if exists todo"
   execute_ c "create table todo (id int(11) not null auto_increment, name varchar(255) not null, status varchar(255) not null, primary key (id))"
   execute_ c "insert into todo (name,status) values('item-1','Active'),('item-2','Complate')"
-  putStrLn "reest db successful"
+  return ()
